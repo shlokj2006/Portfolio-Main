@@ -1,0 +1,92 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# =====================================
+# Dependencies
+# =====================================
+node_modules/
+
+# =====================================
+# Build output
+# =====================================
+dist/
+build/
+
+# =====================================
+# Environment variables
+# =====================================
+.env
+.env.*
+!.env.example
+
+# =====================================
+# Vercel
+# =====================================
+.vercel/
+
+# =====================================
+# Logs
+# =====================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# =====================================
+# Testing and coverage
+# =====================================
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# =====================================
+# Operating system
+# =====================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# =====================================
+# IDE and editors
+# =====================================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# =====================================
+# Temporary files
+# =====================================
+*.tmp
+*.temp
+.cache/
