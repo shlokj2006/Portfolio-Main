@@ -2,69 +2,47 @@
 
 [← README](../README.md) · [Frontend](FRONTEND_DOCUMENTATION.md) · [Architecture](ARCHITECTURE_AND_STRUCTURE.md) · [Design system](DESIGN_SYSTEM.md) · [Content and assets](CONTENT_AND_ASSET_GUIDE.md) · [Integrations](INTEGRATIONS.md) · [SEO/accessibility/performance](SEO_ACCESSIBILITY_PERFORMANCE.md) · [Roadmap](DEVELOPMENT_ROADMAP.md) · [Test plan](TEST_PLAN.md)
 
-## Vision and purpose
+## Purpose
 
-**Shlok Jaiswal — Personal Portfolio** will present its owner as a Full-Stack Developer & AI Automation Enthusiast. It will make the owner's professional profile, project work, and contact path easy to understand for recruiters, hiring managers, internship providers, prospective clients, and technical peers.
+Shlok Jaiswal's portfolio presents profile information, technical skills, services, projects, experience, certifications, and contact options for recruiters, internship providers, prospective clients, and technical peers.
 
-Approved headline: “Engineering Web Experiences. Automating What Comes Next.”
+## Technology and architecture
 
-## Goals
+The implemented application uses React, Vite, Tailwind CSS, and React Router. Components and routes are under `src/`; editable portfolio data is under `src/content/`; theme tokens and provider are under `src/theme/`; application styling is under `src/styles/`. EmailJS is used by the browser-side contact form. There is no portfolio backend or database. See [Architecture and Structure](ARCHITECTURE_AND_STRUCTURE.md).
 
-1. Attract internship opportunities.
-2. Attract freelance development clients.
-3. Showcase technical capabilities and real-world projects.
-4. Establish a professional personal brand.
+## Implemented pages and features
 
-## Scope
+- Homepage sections: Hero with profile photo, About with education/roles/focus/interests, Skills, and expandable Services.
+- Projects catalog at `/projects`, populated from `src/content/projects.js` with featured and other project groups.
+- Case studies: EventHub, School Van Monitoring System, and AI Content Automation Pipeline.
+- Experience page with listed roles and practical project experience.
+- Certifications page with certificate records grouped by provider and preview/view options.
+- Contact page with email, phone, LinkedIn, GitHub, validated form, and EmailJS submission states.
+- Responsive shared navigation and footer; light/dark themes with operating-system preference and a persistent manual switch.
+- Not-found page for unknown paths.
+- Concise `/resume` overview with selected verified content and a download action for `assets/Shlok_Jaiswal_Resume.pdf`.
 
-### Initial planned scope
+The resume overview includes education, categorized skills, listed internship/leadership roles without unsupported responsibility claims, selected project summaries with technology tags, selected certifications, career interests, and exactly three actions. The PDF is downloaded rather than previewed or embedded. The source configuration contains supported availability labels, but no public availability indicator is currently displayed.
 
-- Responsive homepage: Hero, About, Skills, Services, Featured Projects, Experience, Education, Certifications, Contact, and Footer.
-- EventHub and School Van Monitoring System case studies.
-- Dedicated Resume page with online preview and PDF download.
-- Floating responsive navbar, OS-driven theming, project/service interactions, availability status, and contact form.
-- Dark Teal Fintech and Light Sage Green themes treated as separate systems.
+## Routes
 
-See the [frontend guide](FRONTEND_DOCUMENTATION.md) and [design system](DESIGN_SYSTEM.md).
+| Path | Page |
+|---|---|
+| `/` | Homepage |
+| `/projects` | Project catalog |
+| `/projects/eventhub` | EventHub case study |
+| `/projects/school-van` | School Van case study |
+| `/projects/ai-content-automation` | AI Content Automation Pipeline case study |
+| `/experience` | Experience |
+| `/certifications` | Certifications |
+| `/contact` | Contact |
+| `/resume` | Resume overview and PDF download |
+| `*` | Not found |
 
-### Future possibilities and out of scope
+## Design and quality goals
 
-A Blog / Learning Journal is deferred and excluded from the initial navigation and implementation scope. A custom backend, API, database, or payment processing system for this portfolio is also out of scope. Do not claim third-party payment integration for EventHub. Other additions require a later product decision.
+The visual system uses separate Light Sage Green and Dark Teal token sets. Responsive layouts, keyboard operation, visible focus, and reduced-motion support are implementation requirements. Accessibility, contrast, performance, and production deep-link behavior should be evaluated against the [test plan](TEST_PLAN.md); documentation does not imply those outcomes without recorded checks.
 
-## Main features (planned)
+## Contact configuration
 
-| Feature | Intent | Status |
-|---|---|---|
-| Portfolio homepage | Present profile, capabilities, work, and contact | Planned |
-| Project case studies | Explain EventHub and School Van work | Planned; implementation details need verification |
-| Resume page | Preview, download, and open an updated PDF in a new tab with unavailable-PDF fallback | Planned; asset pending |
-| Theme behavior | Follow OS `prefers-color-scheme`; independent palettes; no manual selector or persisted choice | Planned |
-| Routing | React Router routes `/`, `/projects/eventhub`, `/projects/school-van`, `/resume`, and not-found; direct navigation/refresh support | Planned |
-| Contact form | Collect name, email, enquiry type, and message | Planned; EmailJS pending |
-| Availability indicator | Show one of four states sourced from owner-maintained frontend content/config | Planned; initial value pending |
-
-## Non-functional requirements
-
-- Responsive layouts preserve access to core content and controls.
-- Keyboard-operable interactions, visible focus, semantic markup, and WCAG 2.2 AA target.
-- Respect reduced-motion preferences.
-- Readable contrast and resilient form feedback.
-- Efficient loading, optimized media, and measured performance targets.
-- Maintainable frontend architecture appropriate to a personal portfolio.
-
-These are targets, not verified outcomes. See [SEO, accessibility, and performance](SEO_ACCESSIBILITY_PERFORMANCE.md).
-
-## Design philosophy
-
-Premium, creative, and technical. Use clean surfaces, subtle organic shapes, restrained gradients, and occasional hand-drawn details. Avoid neon, excessive gradients, generic AI SaaS styling, excessive glass effects, and overcrowding. Never blend the two theme palettes automatically.
-
-## Constraints and decisions
-
-- Documentation only. Development status **Not Started**; implementation status **Not Authorized**.
-- Planned stack: React, Vite, Tailwind CSS, React Router, EmailJS, Git/GitHub, Vercel. Framer Motion and Lucide React are proposed. No versions, scripts, credentials, or configuration specified.
-- Do not fabricate skill levels, contact details, achievements, certificates, screenshots, URLs, or resume contents. Mark unknown content Pending. Skill proficiency uses Beginner, Intermediate, or Advanced only when supplied.
-- WhatsApp display awaits permission to publish a phone number.
-- Distinguish confirmed project facts from planned or unverified capabilities, especially for School Van.
-- Verify School Van evidence; label each partially implemented feature explicitly and do not describe partial/planned work as completed.
-- EmailJS uses browser integration, built-in spam protection, and basic client-side validation; no CAPTCHA dependency initially. Its public configuration is browser-visible; private credentials must not be exposed.
-- No initial-release blog, backend, or database for the portfolio.
+The browser form uses EmailJS and the variable names `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY`. EmailJS public configuration is browser-visible. Never put private credentials in frontend code. See [Integrations](INTEGRATIONS.md).

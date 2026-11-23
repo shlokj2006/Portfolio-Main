@@ -1,23 +1,51 @@
-# React + Vite
+# Shlok Jaiswal — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A responsive React portfolio built with Vite, Tailwind CSS, and React Router. The site includes a multi-section homepage, project catalog and case studies, experience and certifications pages, a concise resume overview with a downloadable PDF, and an EmailJS contact form.
 
-Currently, two official plugins are available:
+## Technology
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React and React Router
+- Vite and Tailwind CSS
+- EmailJS browser integration
+- Lucide React and Framer Motion dependencies
 
-## React Compiler
+## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Prerequisites: Node.js and npm.
 
-## Expanding the Oxlint configuration
+```sh
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Available checks and build commands:
 
-## Portfolio documentation
+```sh
+npm run lint
+npm run build
+npm run preview
+```
 
-The portfolio requirements and architecture decisions are documented in [`docs/`](docs/PROJECT_OVERVIEW.md):
+The contact form reads these Vite configuration names: `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY`. Configure them in the local environment and deployment settings; do not commit environment files. EmailJS public configuration is visible to browsers, so private credentials must never be placed in frontend code. The form submits `name`, `email`, `subject`, and `message` parameters.
+
+## Pages
+
+| Path | Content |
+|---|---|
+| `/` | Hero, About, Skills, and Services |
+| `/projects` | Top Projects and Other Projects catalog |
+| `/projects/eventhub` | EventHub case study |
+| `/projects/school-van` | School Van Monitoring System case study |
+| `/projects/ai-content-automation` | AI Content Automation Pipeline case study |
+| `/experience` | Internship, leadership, and practical project experience |
+| `/certifications` | Certificate records grouped by provider |
+| `/contact` | Contact options and EmailJS form |
+| `/resume` | Concise resume overview and PDF download |
+| Other paths | Not-found page |
+
+## Project structure and documentation
+
+Application code is organized under `src/app`, `src/components`, `src/content`, `src/pages`, `src/theme`, and `src/styles`. Portfolio images and certificate assets are under `assets/`.
 
 - [Project overview](docs/PROJECT_OVERVIEW.md)
 - [Frontend documentation](docs/FRONTEND_DOCUMENTATION.md)
@@ -28,5 +56,3 @@ The portfolio requirements and architecture decisions are documented in [`docs/`
 - [SEO, accessibility, and performance](docs/SEO_ACCESSIBILITY_PERFORMANCE.md)
 - [Development roadmap](docs/DEVELOPMENT_ROADMAP.md)
 - [Test plan](docs/TEST_PLAN.md)
-
-The planned theme follows the operating system preference. React Router routes, availability content, EmailJS handling, and resume fallback are specified in the linked guides.

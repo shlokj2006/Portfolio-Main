@@ -4,7 +4,33 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio-main</title>
+    <meta
+      name="description"
+      content="Personal portfolio of Shlok Jaiswal, Full-Stack Developer and AI Automation Enthusiast."
+    />
+    <meta name="theme-color" content="#FFFEF1" />
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('portfolio-theme')
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const theme = savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : (systemPrefersDark ? 'dark' : 'light')
+        document.documentElement.dataset.theme = theme
+        document.querySelector('meta[name="theme-color"]')?.setAttribute(
+          'content',
+          theme === 'dark' ? '#08171C' : '#FFFEF1',
+        )
+      } catch {
+        const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        document.documentElement.dataset.theme = theme
+        document.querySelector('meta[name="theme-color"]')?.setAttribute(
+          'content',
+          theme === 'dark' ? '#08171C' : '#FFFEF1',
+        )
+      }
+    </script>
+    <title>Shlok Jaiswal | Personal Portfolio</title>
   </head>
   <body>
     <div id="root"></div>

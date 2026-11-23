@@ -1,0 +1,235 @@
+.bl_page404 {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 35px 20px;
+    overflow-x: clip;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    background-color: #1d3041;
+    color: #ffffff;
+    font-family: "Open Sans", sans-serif;
+}
+
+.bl_page404 h1 {
+    width: 100%;
+    margin: 10px 0 25px;
+
+    text-align: center;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+
+.bl_page404 p {
+    display: block;
+    width: 100%;
+    max-width: 776px;
+    margin: 0 auto 25px;
+
+    text-align: center;
+    color: #bcecf2;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.bl_page404__wrapper {
+    position: relative;
+    width: min(440px, 100%);
+    aspect-ratio: 440 / 410;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.bl_page404__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Animated 404 elements */
+
+.bl_page404__el1,
+.bl_page404__el2,
+.bl_page404__el3 {
+    position: absolute;
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.bl_page404__el1 {
+    top: 26.34%;
+    left: 23.18%;
+    width: 19.09%;
+    height: 25.85%;
+
+    background-image: url("../../assets/images/404-1.png");
+
+    animation: el1Move 800ms linear infinite;
+}
+
+.bl_page404__el2 {
+    top: 22.44%;
+    left: 30.91%;
+    width: 41.82%;
+    height: 25.85%;
+
+    background-image: url("../../assets/images/404-2.png");
+
+    animation: el2Move 800ms linear infinite;
+}
+
+.bl_page404__el3 {
+    top: 26.34%;
+    left: 40.91%;
+    width: 64.55%;
+    height: 25.85%;
+
+    background-image: url("../../assets/images/404-3.png");
+
+    animation: el3Move 800ms linear infinite;
+}
+
+/* Animation keyframes */
+
+@keyframes el1Move {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-95%, -111%);
+        opacity: 0;
+    }
+}
+
+@keyframes el2Move {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-15%, -96%);
+        opacity: 0;
+    }
+}
+
+@keyframes el3Move {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(34%, -75%);
+        opacity: 0;
+    }
+}
+
+/* Go Home button */
+
+.bl_page404__link {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+
+    display: block;
+    width: min(260px, 75%);
+    min-height: 64px;
+    box-sizing: border-box;
+
+    box-shadow:
+        0 5px 0 #9c1007,
+        inset 0 0 18px rgba(253, 60, 0, 0.75);
+
+    background-color: #f95801;
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 64px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    border-radius: 30px;
+
+    transition:
+        background-color 200ms ease,
+        box-shadow 200ms ease,
+        transform 200ms ease;
+}
+
+.bl_page404__link:hover {
+    background-color: #ff7400;
+    transform: translate(-50%, -3px);
+}
+
+.bl_page404__link:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 5px;
+}
+
+.bl_page404__link:active {
+    transform: translate(-50%, 1px);
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 600px) {
+    .bl_page404 {
+        padding: 30px 16px;
+        justify-content: center;
+    }
+
+    .bl_page404 h1 {
+        margin-top: 0;
+        margin-bottom: 18px;
+    }
+
+    .bl_page404 p {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 15px;
+    }
+
+    .bl_page404__wrapper {
+        width: min(440px, 100%);
+    }
+
+    .bl_page404__link {
+        min-height: 52px;
+        line-height: 52px;
+        font-size: 19px;
+    }
+}
+
+/* Accessibility: reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .bl_page404__el1,
+    .bl_page404__el2,
+    .bl_page404__el3 {
+        animation: none;
+        opacity: 1;
+    }
+
+    .bl_page404__link {
+        transition: none;
+    }
+}
