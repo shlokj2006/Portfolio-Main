@@ -113,7 +113,7 @@ function ResumePage() {
       </section>
 
       <section className="resume-page__section" aria-labelledby="resume-projects">
-        <h2 id="resume-projects">Selected Projects</h2>
+        <h2 id="resume-projects">Top Projects</h2>
         <div className="resume-page__projects">
           {selectedProjects.map((project) => (
             <article className="resume-page__project" key={project.id}>
@@ -135,7 +135,7 @@ function ResumePage() {
       </section>
 
       <section className="resume-page__section" aria-labelledby="resume-certifications">
-        <h2 id="resume-certifications">Selected Certifications</h2>
+        <h2 id="resume-certifications">Top Certifications</h2>
         <div className="resume-page__certifications">
           {selectedCertifications.map((certificate) => (
             <article className="resume-page__certificate" key={certificate.id}>
