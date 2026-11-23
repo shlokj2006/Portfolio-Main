@@ -1,3 +1,10 @@
+import eventHubPreview from '../../assets/images/Eventhub.png'
+import n8nPreview from '../../assets/images/n8n.png'
+import skillBridgePreview from '../../assets/images/Skillbridge.png'
+import jarvisPreview from '../../assets/images/jarvis.gif'
+import techFlowPreview from '../../assets/images/TechFlow.png'
+import pizzaAssistantPreview from '../../assets/images/Pizza-ai.png'
+
 export const projects = [
   {
     id: "eventhub",
@@ -10,7 +17,7 @@ export const projects = [
     route: "/projects/eventhub",
     githubUrl: "https://github.com/shlokj2006/EventHub",
     demoUrl: "https://eventhub-one-phi.vercel.app/",
-    image: "/assets/images/Eventhub.png",
+    image: eventHubPreview,
   },
   {
     id: "school-van",
@@ -36,7 +43,7 @@ export const projects = [
     route: "/projects/ai-content-automation",
     githubUrl: null,
     demoUrl: null,
-    image: "/assets/images/n8n.png",
+    image: n8nPreview,
   },
   {
     id: "skillbridge",
@@ -50,7 +57,7 @@ export const projects = [
     route: null,
     githubUrl: "https://github.com/shlokj2006/Freelancing-Community-Project",
     demoUrl: "https://skillbridge404.netlify.app/freelancers.html",
-    image: "/assets/images/Skillbridge.png",
+    image: skillBridgePreview,
   },
   {
     id: "jarvis-bot-2",
@@ -63,7 +70,7 @@ export const projects = [
     route: null,
     githubUrl: "https://github.com/shlokj2006/JARVIS-Bot-2.0",
     demoUrl: "https://shlokjarvis.netlify.app/",
-    image: "/assets/images/jarvis.gif",
+    image: jarvisPreview,
   },
   {
     id: "techflow-summit-2025",
@@ -76,7 +83,7 @@ export const projects = [
     route: null,
     githubUrl: "https://github.com/shlokj2006/Eventlandingwebsite",
     demoUrl: "https://eventlandingsiteproject.netlify.app/",
-    image: "/assets/images/TechFlow.png",
+    image: techFlowPreview,
   },
   {
     id: "shloks-pizza-order-assistant",
@@ -95,6 +102,6 @@ export const projects = [
     route: null,
     githubUrl: "https://github.com/shlokj2006/Shlok-s--Pizza-Place",
     demoUrl: null,
-    image: "/assets/images/Pizza-ai.png",
+    image: pizzaAssistantPreview,
   },
 ];
