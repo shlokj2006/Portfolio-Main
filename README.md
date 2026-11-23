@@ -2,6 +2,8 @@
 
 A responsive React portfolio built with Vite, Tailwind CSS, and React Router. The site includes a multi-section homepage, project catalog and case studies, experience and certifications pages, a concise resume overview with a downloadable PDF, and an EmailJS contact form.
 
+#Live site
+https://shlokjaiswal.vercel.app/
 ## Technology
 
 - React and React Router
