@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import profilePhoto from '../../../assets/images/Profilephoto.jpg'
+import AvailabilityStatus from './AvailabilityStatus.jsx'
 
 function HeroSection() {
   return (
@@ -19,6 +20,7 @@ function HeroSection() {
             Contact Me
           </Link>
         </div>
+        <AvailabilityStatus />
       </div>
 
       <div className="hero-art hero-art--photo">

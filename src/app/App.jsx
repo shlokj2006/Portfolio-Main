@@ -4,6 +4,7 @@ import EventHubPage from '../pages/EventHubPage.jsx'
 import AIContentAutomationPage from '../pages/AIContentAutomationPage.jsx'
 import ExperiencePage from '../pages/ExperiencePage.jsx'
 import ContactPage from '../pages/ContactPage.jsx'
+import FeedbackPage from '../pages/FeedbackPage.jsx'
 import CertificationsPage from '../pages/CertificationsPage.jsx'
 import HomePage from '../pages/HomePage.jsx'
 import NotFoundPage from '../pages/NotFoundPage.jsx'
@@ -17,6 +18,7 @@ function App() {
       <Route element={<SiteLayout />}>
         <Route index element={<HomePage />} />
         <Route path="contact" element={<ContactPage />} />
+        <Route path="feedback" element={<FeedbackPage />} />
         <Route path="projects" element={<ProjectsPage />} />
         <Route path="experience" element={<ExperiencePage />} />
         <Route path="certifications" element={<CertificationsPage />} />

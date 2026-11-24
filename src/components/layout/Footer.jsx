@@ -10,6 +10,7 @@ const footerNavigation = [
   { to: '/certifications', label: 'Certifications' },
   { to: '/resume', label: 'Resume' },
   { to: '/contact', label: 'Contact' },
+  { to: '/feedback', label: 'Feedback' },
 ]
 
 function Footer() {
