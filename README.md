@@ -1,9 +1,9 @@
 # Shlok Jaiswal — Portfolio
 
-A responsive React portfolio built with Vite, Tailwind CSS, and React Router. The site includes a multi-section homepage, project catalog and case studies, experience and certifications pages, a concise resume overview with a downloadable PDF, and an EmailJS contact form.
+A responsive React portfolio built with Vite, Tailwind CSS, and React Router. It includes a multi-section homepage, projects and case studies, experience, certifications, resume and contact pages, plus a light/dark theme, interactive Developer Terminal, command palette, Whack-a-Mole game, feedback form, and contact copy actions.
 
-#Live site
-https://shlokjaiswal.vercel.app/
+Live site: <https://shlokjaiswal.vercel.app/> (provided by the project owner).
+
 ## Technology
 
 - React and React Router
@@ -34,7 +34,7 @@ The contact form reads these Vite configuration names: `VITE_EMAILJS_SERVICE_ID`
 
 | Path | Content |
 |---|---|
-| `/` | Hero, About, Skills, and Services |
+| `/` | Hero, About, Skills, Services, and Whack-a-Mole game |
 | `/projects` | Top Projects and Other Projects catalog |
 | `/projects/eventhub` | EventHub case study |
 | `/projects/school-van` | School Van Monitoring System case study |
@@ -42,8 +42,11 @@ The contact form reads these Vite configuration names: `VITE_EMAILJS_SERVICE_ID`
 | `/experience` | Internship, leadership, and practical project experience |
 | `/certifications` | Certificate records grouped by provider |
 | `/contact` | Contact options and EmailJS form |
+| `/feedback` | Portfolio feedback form (noindex) |
 | `/resume` | Concise resume overview and PDF download |
 | Other paths | Not-found page |
+
+The shared layout provides responsive navigation, theme switching, a scroll progress indicator, and a searchable command palette. The homepage hero includes the interactive Developer Terminal. Contact details can be copied from the Contact page; the Art interest card links to The Artverse on Instagram.
 
 ## Project structure and documentation
 

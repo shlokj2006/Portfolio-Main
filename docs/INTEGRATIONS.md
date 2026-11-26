@@ -1,37 +1,35 @@
 # Integrations
 
-[← README](../README.md) · [Overview](PROJECT_OVERVIEW.md) · [Frontend](FRONTEND_DOCUMENTATION.md) · [Architecture](ARCHITECTURE_AND_STRUCTURE.md) · [Design system](DESIGN_SYSTEM.md) · [Content and assets](CONTENT_AND_ASSET_GUIDE.md) · [SEO/accessibility/performance](SEO_ACCESSIBILITY_PERFORMANCE.md) · [Roadmap](DEVELOPMENT_ROADMAP.md) · [Test plan](TEST_PLAN.md)
+[<- README](../README.md) | [Overview](PROJECT_OVERVIEW.md) | [Frontend](FRONTEND_DOCUMENTATION.md) | [Architecture](ARCHITECTURE_AND_STRUCTURE.md) | [Design system](DESIGN_SYSTEM.md) | [Content and assets](CONTENT_AND_ASSET_GUIDE.md) | [SEO/accessibility/performance](SEO_ACCESSIBILITY_PERFORMANCE.md) | [Roadmap](DEVELOPMENT_ROADMAP.md) | [Test plan](TEST_PLAN.md)
 
-## EmailJS contact form — implemented
+## EmailJS contact form
 
-`src/pages/ContactPage.jsx` submits the form in the browser with `@emailjs/browser`. It sends the template parameters `name`, `email`, `subject`, and `message`, and provides sending, success, and error feedback. The form clears only after EmailJS accepts the request. The success message does not guarantee inbox delivery. Basic client-side validation is used. No CAPTCHA dependency is included; enable EmailJS built-in spam controls in the provider configuration.
+`src/pages/ContactPage.jsx` submits `name`, `email`, `subject`, and `message` through `@emailjs/browser`. It reports sending, success, and failure states and clears the form after EmailJS accepts the request. Acceptance does not guarantee inbox delivery.
 
-The Vite configuration names are:
+Configuration names read by the contact form:
 
 - `VITE_EMAILJS_SERVICE_ID`
 - `VITE_EMAILJS_TEMPLATE_ID`
 - `VITE_EMAILJS_PUBLIC_KEY`
 
-Configure these names in the local development environment and hosting settings as appropriate. Values are intentionally not recorded in documentation. EmailJS public configuration is visible in browser code; do not place private credentials in frontend code. A form submission has not been represented here as a live delivery test.
+Configure the names in the local development environment and hosting settings as needed. Values are intentionally not recorded. EmailJS public configuration is visible in browser code; never put private credentials in frontend code. No live delivery test is claimed here.
 
-## EmailJS feedback form â€” implemented, template configuration required
+## EmailJS feedback form
 
-`src/pages/FeedbackPage.jsx` sends portfolio feedback through the existing EmailJS service and public key, with a separate `VITE_EMAILJS_FEEDBACK_TEMPLATE_ID`. Create a dedicated EmailJS template whose recipient is configured in EmailJS, then map these template parameters:
+`src/pages/FeedbackPage.jsx` uses the existing EmailJS service and public key with the dedicated `VITE_EMAILJS_FEEDBACK_TEMPLATE_ID`. Its parameters are `feedback_category`, `feedback_rating`, `feedback_rating_label`, `feedback_name`, and `feedback_message`. The page reports when delivery configuration is missing and only reports success after EmailJS accepts the request; inbox delivery is not guaranteed. Client-side validation, a hidden honeypot, a minimum completion delay, and a disabled submit button provide basic spam friction. `/feedback` is marked `noindex, nofollow`.
 
-- `feedback_category`
-- `feedback_rating`
-- `feedback_rating_label`
-- `feedback_name`
-- `feedback_message`
+## Browser APIs and local storage
 
-The page reports that delivery is not configured until `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_PUBLIC_KEY`, and `VITE_EMAILJS_FEEDBACK_TEMPLATE_ID` are present. It only shows a success message after EmailJS accepts the request; that response does not guarantee inbox delivery. A hidden honeypot, three-second completion delay, and disabled submit button during requests provide basic client-side spam friction. Enable EmailJS provider controls for additional protection.
+The Contact page uses the Clipboard API for displayed email and phone values, with status feedback on success or failure. The game synthesizes sound with Web Audio after user interaction. Its sound preference and high score, and the theme preference, are stored locally with error handling. These features do not send this state to a portfolio backend.
+
+The Art interest links to the supplied Instagram profile `https://www.instagram.com/the_artverse/` in a new tab with `noopener noreferrer`.
 
 ## GitHub and Vercel
 
-Root `vercel.json` configures a React Router single-page-app rewrite to `/index.html`. The project includes verified GitHub and Vercel links for particular portfolio projects, but this documentation does not assert that the portfolio itself is deployed or that production direct-route refreshes have been tested.
+The portfolio displays GitHub project links where configured. Root `vercel.json` provides a React Router SPA rewrite to `/index.html`. The project owner provided the live URL `https://shlokjaiswal.vercel.app/`; repository configuration alone does not verify deployment behavior.
 
 | Integration | Current use/status |
 |---|---|
-| EmailJS | Browser-side contact form implemented; account/runtime configuration is not documented here |
+| EmailJS | Browser-side contact and feedback forms; account configuration and delivery are external |
 | GitHub | Project repository links are shown where available |
-| Vercel | SPA fallback configured in root `vercel.json`; portfolio deployment status is not asserted |
+| Vercel | SPA fallback configured; live URL supplied by project owner |

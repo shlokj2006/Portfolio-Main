@@ -1,6 +1,6 @@
 # Project Overview
 
-[← README](../README.md) · [Frontend](FRONTEND_DOCUMENTATION.md) · [Architecture](ARCHITECTURE_AND_STRUCTURE.md) · [Design system](DESIGN_SYSTEM.md) · [Content and assets](CONTENT_AND_ASSET_GUIDE.md) · [Integrations](INTEGRATIONS.md) · [SEO/accessibility/performance](SEO_ACCESSIBILITY_PERFORMANCE.md) · [Roadmap](DEVELOPMENT_ROADMAP.md) · [Test plan](TEST_PLAN.md)
+[<- README](../README.md) | [Frontend](FRONTEND_DOCUMENTATION.md) | [Architecture](ARCHITECTURE_AND_STRUCTURE.md) | [Design system](DESIGN_SYSTEM.md) | [Content and assets](CONTENT_AND_ASSET_GUIDE.md) | [Integrations](INTEGRATIONS.md) | [SEO/accessibility/performance](SEO_ACCESSIBILITY_PERFORMANCE.md) | [Roadmap](DEVELOPMENT_ROADMAP.md) | [Test plan](TEST_PLAN.md)
 
 ## Purpose
 
@@ -8,21 +8,18 @@ Shlok Jaiswal's portfolio presents profile information, technical skills, servic
 
 ## Technology and architecture
 
-The implemented application uses React, Vite, Tailwind CSS, and React Router. Components and routes are under `src/`; editable portfolio data is under `src/content/`; theme tokens and provider are under `src/theme/`; application styling is under `src/styles/`. EmailJS is used by the browser-side contact form. There is no portfolio backend or database. See [Architecture and Structure](ARCHITECTURE_AND_STRUCTURE.md).
+The client-side application uses React, Vite, Tailwind CSS, and React Router. Editable portfolio data is under `src/content/`; shared components are under `src/components/`; theme tokens and provider are under `src/theme/`; styling is in `src/styles/`. Contact and feedback submissions use EmailJS in the browser. There is no custom portfolio backend or database. See [Architecture and Structure](ARCHITECTURE_AND_STRUCTURE.md).
 
 ## Implemented pages and features
 
-- Homepage sections: Hero with profile photo, About with education/roles/focus/interests, Skills, and expandable Services.
-- Projects catalog at `/projects`, populated from `src/content/projects.js` with featured and other project groups.
-- Case studies: EventHub, School Van Monitoring System, and AI Content Automation Pipeline.
-- Experience page with listed roles and practical project experience.
-- Certifications page with certificate records grouped by provider and preview/view options.
-- Contact page with email, phone, LinkedIn, GitHub, validated form, and EmailJS submission states.
-- Responsive shared navigation and footer; light/dark themes with operating-system preference and a persistent manual switch.
-- Not-found page for unknown paths.
-- Concise `/resume` overview with selected verified content and a download action for `assets/Shlok_Jaiswal_Resume.pdf`.
-
-The resume overview includes education, categorized skills, listed internship/leadership roles without unsupported responsibility claims, selected project summaries with technology tags, selected certifications, career interests, and exactly three actions. The PDF is downloaded rather than previewed or embedded. The source configuration contains supported availability labels, but no public availability indicator is currently displayed.
+- Homepage: hero with profile photo and Availability Status; About, skills, expandable Services, and Whack-a-Mole teaser/game. The Art interest links to The Artverse on Instagram.
+- Interactive Developer Terminal in the hero. Commands: `help`, `about`, `skills`, `projects`, `experience`, `certifications`, `contact`, `resume`, `clear`, and `exit`.
+- Projects catalog and case studies for EventHub, School Van Monitoring System, and AI Content Automation Pipeline.
+- Experience, certifications, Contact, Feedback, Resume, and not-found pages.
+- Responsive shared navigation/footer, persistent light/dark theme selection, route-aware scroll progress, and searchable Command Palette with mobile-menu access.
+- Contact page email and phone copy actions with success/failure feedback. Contact and feedback forms have validation and EmailJS submission states.
+- Whack-a-Mole has a 3x3 board, 30-second round, normal and once-per-round golden mole scoring, locally stored best score and sound preference, synthesized Web Audio effects, keyboard-operable holes, and a native dialog.
+- `/resume` presents selected resume content and a download action for the bundled PDF.
 
 ## Routes
 
@@ -36,13 +33,14 @@ The resume overview includes education, categorized skills, listed internship/le
 | `/experience` | Experience |
 | `/certifications` | Certifications |
 | `/contact` | Contact |
+| `/feedback` | Feedback (`noindex`) |
 | `/resume` | Resume overview and PDF download |
 | `*` | Not found |
 
-## Design and quality goals
+## Design and quality
 
-The visual system uses separate Light Sage Green and Dark Teal token sets. Responsive layouts, keyboard operation, visible focus, and reduced-motion support are implementation requirements. Accessibility, contrast, performance, and production deep-link behavior should be evaluated against the [test plan](TEST_PLAN.md); documentation does not imply those outcomes without recorded checks.
+The visual system uses light sage/ivory and dark teal token sets. Interactive components include keyboard support and visible focus styles; responsive and reduced-motion rules are in `src/styles/app.css`. Accessibility and performance review status is described in the [test plan](TEST_PLAN.md).
 
 ## Contact configuration
 
-The browser form uses EmailJS and the variable names `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY`. EmailJS public configuration is browser-visible. Never put private credentials in frontend code. See [Integrations](INTEGRATIONS.md).
+The browser forms use the EmailJS configuration names documented in [Integrations](INTEGRATIONS.md). EmailJS public configuration is browser-visible; never put private credentials in frontend code.

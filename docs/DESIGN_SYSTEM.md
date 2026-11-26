@@ -1,67 +1,32 @@
 # Design System
 
-[← README](../README.md) · [Overview](PROJECT_OVERVIEW.md) · [Frontend](FRONTEND_DOCUMENTATION.md) · [Architecture](ARCHITECTURE_AND_STRUCTURE.md) · [Content and assets](CONTENT_AND_ASSET_GUIDE.md) · [Integrations](INTEGRATIONS.md) · [SEO/accessibility/performance](SEO_ACCESSIBILITY_PERFORMANCE.md) · [Roadmap](DEVELOPMENT_ROADMAP.md) · [Test plan](TEST_PLAN.md)
+[<- README](../README.md) | [Overview](PROJECT_OVERVIEW.md) | [Frontend](FRONTEND_DOCUMENTATION.md) | [Architecture](ARCHITECTURE_AND_STRUCTURE.md) | [Content and assets](CONTENT_AND_ASSET_GUIDE.md) | [Integrations](INTEGRATIONS.md) | [SEO/accessibility/performance](SEO_ACCESSIBILITY_PERFORMANCE.md) | [Roadmap](DEVELOPMENT_ROADMAP.md) | [Test plan](TEST_PLAN.md)
 
-> Two approved visual directions, both **Planned**. Keep palettes independent; never blend them automatically. Contrast notes need measurement against final typography and rendered components.
+The implemented system uses two independent palettes selected by `data-theme`: Light Sage Green and Dark Teal. Semantic tokens are defined in `src/theme/tokens.css`. The Whack-a-Mole colors are scoped to game classes and do not alter shared theme tokens.
 
-## Dark Theme — Dark Teal Fintech
+## Theme tokens
 
-| Color | Hex | Suggested role |
-|---|---|---|
-| Deep Teal | `#304C57` | Accent surface/emphasis |
-| Almost Black | `#08171C` | Main background |
-| Dark Teal | `#273D45` | Elevated surface |
-| Muted Teal | `#3E7480` | Secondary accent |
-| Soft Teal | `#58858F` | Highlight/decorative accent |
-| Blue Grey | `#436E79` | Supporting accent |
-| Off White | `#F4F3EF` | Primary text on dark |
-| Silver Grey | `#B8BAB9` | Muted text on dark |
-| Warm Grey | `#D4D1CD` | Supporting light tone |
+| Theme | Main background | Surface | Primary text | Accent |
+|---|---|---|---|---|
+| Light | Warm ivory `#FFFEF1` | White `#FFFFFF` | Dark brown `#473C33` | Muted olive `#8C9F5F` |
+| Dark | Almost black `#08171C` | Dark teal `#273D45` | Off white `#F4F3EF` | Soft teal `#58858F` |
 
-## Light Theme — Sage Green Earthy Minimalism
+Supporting light tokens: sage `#ABC270`, muted olive `#8C9F5F`, light sage `#B9C783`, golden yellow `#FEC868`, soft peach `#FDA769`, warm cream `#EBE7D0`, and warm grey-brown `#766B60`. Supporting dark tokens: deep teal `#304C57`, muted teal `#3E7480`, blue grey `#436E79`, silver grey `#B8BAB9`, and warm grey `#D4D1CD`.
 
-| Color | Hex | Suggested role |
-|---|---|---|
-| Sage | `#ABC270` | Primary accent |
-| Muted Olive | `#8C9F5F` | Secondary accent |
-| Light Sage | `#B9C783` | Soft accent surface |
-| Golden Yellow | `#FEC868` | Warm highlight |
-| Soft Peach | `#FDA769` | Warm highlight |
-| Dark Brown | `#473C33` | Primary text |
-| Warm Ivory | `#FFFEF1` | Main background |
-| White | `#FFFFFF` | Card/elevated surface |
-| Warm Cream | `#EBE7D0` | Supporting surface |
-| Warm Grey Brown | `#766B60` | Muted text |
-
-## Tokens and contrast
-
-Define semantic names per theme: `page`, `surface`, `surfaceRaised`, `textPrimary`, `textMuted`, `accentPrimary`, `accentSecondary`, `border`, `focusRing`, `success`, and `error`. Keep mappings independent and select the system using OS `prefers-color-scheme`. Manual theme selection is not part of approved behavior and no preference is persisted. Prefer Off White on Almost Black/Dark Teal and Dark Brown on Warm Ivory/White. Do not assume accent colors suit small text. Measure final foreground/background pairs against WCAG 2.2 AA. Contrast ratios are not asserted here. Do not communicate focus/error/success/active state by color alone.
+Semantic variables include page, surface, raised surface, primary/muted text, primary/secondary accent, border, focus ring, success, error, and button colors. The theme provider initializes from a stored manual choice or OS preference. The navbar toggle persists manual selections. Contrast ratios have not been recorded here; do not communicate focus/error/success/active state through color alone.
 
 ## Typography
 
-- **Manrope:** Headings.
-- **Inter:** Body text.
-- **JetBrains Mono:** Terminal and code.
+- Headings: Manrope with system sans-serif fallback.
+- Body: Inter with system sans-serif fallback.
+- Terminal/code: JetBrains Mono with monospace fallback.
 
-Font delivery, weights, fallbacks, and source/licensing are Pending. Use fallbacks and avoid blocking text rendering on remote fonts.
+## Layout and components
 
-## Layout, shape, and elevation
+`src/styles/app.css` contains the responsive layout and component styles. Breakpoints adapt navigation, grids, and typography; interactions have hover, focus-visible, active, disabled, expanded, error, and success states as applicable. The game modal bounds its height to the viewport and scrolls internally on small screens.
 
-Use a consistent spacing scale, generous section separation, readable text measure, centered content container, and responsive side padding. Exact values, maximum widths, and breakpoints are Pending implementation; select breakpoints based on content needs. Use a restrained border-radius scale and subtle shadows only where useful. Keep clean surfaces, subtle organic shapes, restrained gradients, and occasional hand-drawn details.
+The game teaser/modal uses a local palette of cream, coral, mint, purple, and navy. Its inline SVG mole artwork avoids external assets. The rest of the interface uses shared semantic theme tokens.
 
-## Component guidance
+## Accessibility and motion
 
-| Element | Planned treatment and states |
-|---|---|
-| Buttons | Clear primary/secondary hierarchy; hover, focus-visible, active, disabled; adequate target area |
-| Cards | Calm surfaces and clear hierarchy; restrained border/shadow; hover only when interactive |
-| Forms | Persistent labels, helpful validation, focus ring, error/status messaging |
-| Navigation | Transparent at top, surface on scroll; active/focus; accessible mobile disclosure |
-| Skill bars | Beginner/Intermediate/Advanced labels mapped to visual bars only when supplied; no invented levels; accessible text and progress semantics, not color alone |
-| Project cards | Title, summary, tags, media alt text, and labeled destinations |
-
-Define hover, focus-visible, active, disabled, expanded, error, and success states where applicable. Motion is restrained and honors reduced-motion.
-
-## Responsive behavior and visual personality
-
-Content-driven breakpoints should adapt navigation, grids, and typography. Prevent horizontal overflow, preserve touch targets, and keep functions available on small screens. Target a premium, creative, technical feel. Avoid neon, excessive gradients, generic AI SaaS styling, excessive glassmorphism, and overcrowding. See [frontend behavior](FRONTEND_DOCUMENTATION.md) and [accessibility target](SEO_ACCESSIBILITY_PERFORMANCE.md).
+Use semantic controls, visible focus, readable labels, and status announcements. Motion is restrained and reduced when `prefers-reduced-motion` is enabled. Accessibility behavior and manual review status are tracked in [SEO, Accessibility, and Performance](SEO_ACCESSIBILITY_PERFORMANCE.md) and the [Test Plan](TEST_PLAN.md); no complete contrast or accessibility audit is claimed here.

@@ -50,6 +50,23 @@ function AboutSection() {
                   <li key={interest.name}>
                     <h3>{interest.name}</h3>
                     <p>{interest.description}</p>
+                    {interest.link && (
+                      <a
+                        className="about-interest-list__link"
+                        href={interest.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Explore artwork by ${interest.linkLabel} on Instagram (opens in a new tab)`}
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" strokeWidth="1.7" />
+                          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.7" />
+                          <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+                        </svg>
+                        <span>{interest.linkLabel}</span>
+                        <span className="about-interest-list__link-label">Explore my artwork</span>
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

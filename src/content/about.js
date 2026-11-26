@@ -34,6 +34,8 @@ export const aboutProfile = {
       name: "Art & Creative Expression",
       description:
         "Enjoying sketching, canvas painting, and working with clay.",
+      link: "https://www.instagram.com/the_artverse/",
+      linkLabel: "The Artverse",
     },
     {
       name: "Podcasts & Digital Content",
