@@ -162,7 +162,7 @@ function ResumePage() {
         <Link className="resume-page__action resume-page__action--primary" to="/contact">Contact</Link>
         <Link className="resume-page__action resume-page__action--secondary" to="/">Back to Portfolio</Link>
         {resumeAvailable
-          ? <a className="resume-page__action resume-page__action--secondary" href={resumePdf} download="Shlok_Jaiswal_Resume.pdf">Download Resume</a>
+          ? <a className="resume-page__action resume-page__action--secondary" href={resumePdf} download="Shlok_Jaiswal_Resume.pdf">Download Full Resume</a>
           : <button className="resume-page__action resume-page__action--secondary" type="button" disabled>Resume temporarily unavailable</button>}
       </nav>
       {!resumeAvailable && <p className="resume-page__download-error" role="status">Please use Contact to request a copy of the resume.</p>}

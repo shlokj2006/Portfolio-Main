@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { commandNames, terminalCommands } from './terminalCommands.js'
+import { useCommandPalette } from '../layout/CommandPaletteContext.jsx'
 
 function DeveloperTerminal() {
   const [isOpen, setIsOpen] = useState(true)
@@ -8,10 +9,24 @@ function DeveloperTerminal() {
   const [history, setHistory] = useState([])
   const [historyIndex, setHistoryIndex] = useState(0)
   const reopenRef = useRef(null)
+  const terminalRef = useRef(null)
   const [output, setOutput] = useState([
     { id: 0, kind: 'message', text: 'Welcome. Type help to see available commands.' },
   ])
   const nextId = useRef(1)
+  const { registerTerminalOpener } = useCommandPalette()
+
+  const showTerminal = useCallback(() => {
+    setIsOpen(true)
+    window.requestAnimationFrame(() => {
+      terminalRef.current?.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        block: 'center',
+      })
+    })
+  }, [])
+
+  useEffect(() => registerTerminalOpener(showTerminal), [registerTerminalOpener, showTerminal])
 
   function append(item) {
     setOutput((current) => [...current, { id: nextId.current++, ...item }])
@@ -74,7 +89,7 @@ function DeveloperTerminal() {
 
   if (!isOpen) {
     return (
-      <div className="developer-terminal-reopen">
+      <div ref={terminalRef} className="developer-terminal-reopen">
         <button ref={reopenRef} className="developer-terminal__reopen-button" type="button" onClick={() => setIsOpen(true)}>
           Open interactive terminal
         </button>
@@ -83,7 +98,7 @@ function DeveloperTerminal() {
   }
 
   return (
-    <section className="developer-terminal" aria-label="Interactive developer terminal">
+    <section ref={terminalRef} className="developer-terminal" aria-label="Interactive developer terminal">
       <header className="developer-terminal__titlebar">
         <span className="developer-terminal__lights" aria-hidden="true"><i /><i /><i /></span>
         <span>shlok@portfolio: ~</span>

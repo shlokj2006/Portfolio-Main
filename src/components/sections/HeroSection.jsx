@@ -2,8 +2,12 @@ import { Link } from 'react-router-dom'
 import profilePhoto from '../../../assets/images/Profilephoto.jpg'
 import AvailabilityStatus from './AvailabilityStatus.jsx'
 import DeveloperTerminal from '../terminal/DeveloperTerminal.jsx'
+import { useCommandPalette } from '../layout/CommandPaletteContext.jsx'
 
 function HeroSection() {
+  const { openPalette } = useCommandPalette()
+  const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad|iPod/.test(navigator.userAgentData?.platform || navigator.platform)
+
   return (
     <section className="hero-section" aria-labelledby="hero-title">
       <div className="hero-copy">
@@ -38,6 +42,12 @@ function HeroSection() {
         />
       </div>
       <DeveloperTerminal />
+      <button className="command-palette-hint" type="button" onClick={(event) => openPalette(event.currentTarget)}>
+        <span className="command-palette-hint__desktop">
+          Press <kbd>{isMac ? 'Cmd' : 'Ctrl'}</kbd> <kbd>K</kbd> to navigate anywhere
+        </span>
+        <span className="command-palette-hint__mobile">Tap to explore pages and actions</span>
+      </button>
     </section>
   )
 }
