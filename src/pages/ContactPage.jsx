@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { siteConfig } from '../content/siteConfig.js'
 
@@ -10,7 +10,23 @@ const emailJsConfig = {
 
 function ContactPage() {
   const [status, setStatus] = useState({ type: 'idle', message: '' })
+  const [copyToast, setCopyToast] = useState(null)
+  const copyToastTimeout = useRef(null)
   const contact = siteConfig.contact
+
+  useEffect(() => () => window.clearTimeout(copyToastTimeout.current), [])
+
+  async function copyContactDetail(value, label) {
+    window.clearTimeout(copyToastTimeout.current)
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable')
+      await navigator.clipboard.writeText(value)
+      setCopyToast({ type: 'success', message: `${label} copied!` })
+    } catch {
+      setCopyToast({ type: 'error', message: `Couldn't copy ${label.toLowerCase()}. Please copy it manually.` })
+    }
+    copyToastTimeout.current = window.setTimeout(() => setCopyToast(null), 2800)
+  }
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -63,10 +79,25 @@ function ContactPage() {
             <li>
               <span>Email</span>
               {contact.email
-                ? <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                ? (
+                  <div className="contact-options__value">
+                    <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                    <button className="contact-copy-button" type="button" onClick={() => copyContactDetail(contact.email, 'Email')} aria-label="Copy email address">
+                      Copy
+                    </button>
+                  </div>
+                )
                 : <span className="contact-options__pending">Address pending</span>}
             </li>
-            <li><span>Phone</span><a href={`tel:${contact.phone.replaceAll(' ', '')}`}>{contact.phone}</a></li>
+            <li>
+              <span>Phone</span>
+              <div className="contact-options__value">
+                <a href={`tel:${contact.phone.replaceAll(' ', '')}`}>{contact.phone}</a>
+                <button className="contact-copy-button" type="button" onClick={() => copyContactDetail(contact.phone, 'Phone number')} aria-label="Copy phone number">
+                  Copy
+                </button>
+              </div>
+            </li>
             <li>
               <span>LinkedIn</span>
               {contact.linkedin
@@ -109,6 +140,11 @@ function ContactPage() {
           </form>
         </section>
       </div>
+      {copyToast && (
+        <div className={`contact-copy-toast contact-copy-toast--${copyToast.type}`} role={copyToast.type === 'error' ? 'alert' : 'status'} aria-live={copyToast.type === 'error' ? 'assertive' : 'polite'}>
+          {copyToast.message}
+        </div>
+      )}
     </div>
   )
 }

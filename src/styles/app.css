@@ -8,6 +8,27 @@
   flex-direction: column;
 }
 
+.scroll-progress {
+  position: fixed;
+  z-index: 6;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: color-mix(in srgb, var(--accent-primary) 18%, transparent);
+  pointer-events: none;
+}
+
+.scroll-progress__fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: var(--accent-primary);
+  transition: transform 80ms linear;
+}
+
 .skip-link {
   position: absolute;
   z-index: 10;
@@ -2659,6 +2680,54 @@
   text-underline-offset: 0.2em;
 }
 
+.contact-options__value {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.7rem;
+}
+
+.contact-copy-button {
+  min-height: 2rem;
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  padding: 0.3rem 0.6rem;
+  color: var(--text-primary);
+  background: var(--surface-raised);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.contact-copy-button:hover {
+  border-color: var(--accent-primary);
+}
+
+.contact-copy-button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.contact-copy-toast {
+  position: fixed;
+  z-index: 20;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  max-width: min(24rem, calc(100vw - 2rem));
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.8rem 1rem;
+  color: var(--text-primary);
+  background: var(--surface-raised);
+  box-shadow: 0 0.75rem 2rem rgb(8 23 28 / 18%);
+  font-size: 0.88rem;
+}
+
+.contact-copy-toast--error {
+  border-color: var(--error);
+}
+
 .contact-options__pending {
   color: var(--text-muted);
 }
@@ -3039,6 +3108,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .scroll-progress__fill {
+    transition: none;
+  }
+
   .hero-art__orbit,
   .hero-art__center,
   .hero-art__panel {
